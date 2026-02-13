@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, status, Query
 from sqlalchemy.orm import Session
-from backend.db.database import get_db
-from backend.app.slots.schemas import SlotCreate, SlotUpdate, SlotResponse, SlotAvailability
-from backend.app.slots.service import SlotService
-from backend.app.auth.dependencies import require_admin, get_current_user
-from backend.db.models import User
+from db.database import get_db
+from app.slots.schemas import SlotCreate, SlotUpdate, SlotResponse, SlotAvailability
+from app.slots.service import SlotService
+from app.auth.dependencies import require_admin, get_current_user
+from db.models import User
 from datetime import date
 from typing import Optional
 
@@ -34,7 +34,7 @@ async def list_slots(
         if not existing_slots:
             # Auto-generate slots for this service and date
             from datetime import time
-            from backend.db.models import Slot
+            from db.models import Slot
             
             time_slots = [
                 (time(9, 0), time(9, 30)), (time(9, 30), time(10, 0)), (time(10, 0), time(10, 30)),

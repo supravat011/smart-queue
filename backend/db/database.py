@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
-from backend.core.config import settings
+from core.config import settings
 
 # Create SQLite engine with WAL mode
 engine = create_engine(

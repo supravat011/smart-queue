@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from backend.db.models import Prediction, Slot
-from backend.app.prediction.algorithms import PredictionAlgorithms
-from backend.app.prediction.schemas import PeakHourAnalysis
+from db.models import Prediction, Slot
+from app.prediction.algorithms import PredictionAlgorithms
+from app.prediction.schemas import PeakHourAnalysis
 
 class PredictionService:
     """Service for prediction operations."""

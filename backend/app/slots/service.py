@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from backend.db.models import Slot, Service
-from backend.app.slots.schemas import SlotCreate, SlotUpdate, SlotAvailability
+from db.models import Slot, Service
+from app.slots.schemas import SlotCreate, SlotUpdate, SlotAvailability
 from datetime import date
 
 class SlotService:

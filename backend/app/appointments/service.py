@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from backend.db.models import Appointment, Slot, Service, User
-from backend.app.appointments.schemas import AppointmentCreate, QueueStatus
-from backend.app.slots.service import SlotService
+from db.models import Appointment, Slot, Service, User
+from app.appointments.schemas import AppointmentCreate, QueueStatus
+from app.slots.service import SlotService
 import secrets
 import string
 
@@ -100,7 +100,7 @@ class AppointmentService:
             db.refresh(new_appointment)
             
             # Broadcast real-time updates
-            from backend.app.websocket.manager import manager
+            from app.websocket.manager import manager
             import asyncio
             
             # Notify slot update
@@ -193,7 +193,7 @@ class AppointmentService:
         db.commit()
         
         # Broadcast updates
-        from backend.app.websocket.manager import manager
+        from app.websocket.manager import manager
         import asyncio
         
         # Notify slot update

@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func, and_
-from backend.db.models import Appointment, Slot, Service
-from backend.app.analytics.schemas import (
+from db.models import Appointment, Slot, Service
+from app.analytics.schemas import (
     AnalyticsOverview,
     ServicePerformance,
     DailyStats

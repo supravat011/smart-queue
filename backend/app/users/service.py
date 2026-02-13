@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from backend.db.models import User
-from backend.app.users.schemas import UserUpdate
+from db.models import User
+from app.users.schemas import UserUpdate
 
 class UserService:
     """Service for user management operations."""

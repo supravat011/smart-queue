@@ -2,9 +2,9 @@
 Seed script to populate initial data for SmartQueue
 """
 from sqlalchemy.orm import Session
-from backend.db.database import SessionLocal, engine, Base
-from backend.db.models import Service, User, Slot
-from backend.core.security import get_password_hash
+from db.database import SessionLocal, engine, Base
+from db.models import Service, User, Slot
+from core.security import get_password_hash
 from datetime import datetime, timedelta, time
 
 def seed_services(db: Session):

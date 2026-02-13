@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from backend.db.database import get_db
-from backend.app.admin.schemas import SystemMetrics, SlotUtilization, BulkSlotCreate
-from backend.app.admin.service import AdminService
-from backend.app.slots.service import SlotService
-from backend.app.auth.dependencies import require_admin
-from backend.db.models import User
+from db.database import get_db
+from app.admin.schemas import SystemMetrics, SlotUtilization, BulkSlotCreate
+from app.admin.service import AdminService
+from app.slots.service import SlotService
+from app.auth.dependencies import require_admin
+from db.models import User
 from datetime import date, time as dt_time
 
 router = APIRouter()

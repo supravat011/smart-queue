@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from backend.db.database import get_db
-from backend.app.recommendations.schemas import SlotRecommendation
-from backend.app.recommendations.service import RecommendationService
-from backend.app.auth.dependencies import get_current_user
-from backend.db.models import User
+from db.database import get_db
+from app.recommendations.schemas import SlotRecommendation
+from app.recommendations.service import RecommendationService
+from app.auth.dependencies import get_current_user
+from db.models import User
 from datetime import date
 
 router = APIRouter()

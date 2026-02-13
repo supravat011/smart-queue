@@ -1,15 +1,15 @@
 from fastapi import APIRouter, Depends, Query
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
-from backend.db.database import get_db
-from backend.app.analytics.schemas import (
+from db.database import get_db
+from app.analytics.schemas import (
     AnalyticsOverview,
     ServicePerformance,
     DailyStats
 )
-from backend.app.analytics.service import AnalyticsService
-from backend.app.auth.dependencies import require_admin
-from backend.db.models import User
+from app.analytics.service import AnalyticsService
+from app.auth.dependencies import require_admin
+from db.models import User
 from datetime import date, timedelta
 import io
 

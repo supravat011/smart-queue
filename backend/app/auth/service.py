@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from backend.db.models import User
-from backend.app.auth.schemas import UserCreate, UserLogin
-from backend.core.security import get_password_hash, verify_password, create_access_token, create_refresh_token
+from db.models import User
+from app.auth.schemas import UserCreate, UserLogin
+from core.security import get_password_hash, verify_password, create_access_token, create_refresh_token
 from datetime import timedelta
 
 class AuthService:

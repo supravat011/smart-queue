@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
-from backend.db.database import get_db
-from backend.app.appointments.schemas import (
+from db.database import get_db
+from app.appointments.schemas import (
     AppointmentCreate,
     AppointmentResponse,
     QueueStatus
 )
-from backend.app.appointments.service import AppointmentService
-from backend.app.auth.dependencies import get_current_user
-from backend.db.models import User
+from app.appointments.service import AppointmentService
+from app.auth.dependencies import get_current_user
+from db.models import User
 
 router = APIRouter()
 

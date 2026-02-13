@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from backend.db.database import get_db
-from backend.app.prediction.schemas import PredictionResponse, PeakHourAnalysis
-from backend.app.prediction.service import PredictionService
-from backend.app.auth.dependencies import get_current_user
-from backend.db.models import User
+from db.database import get_db
+from app.prediction.schemas import PredictionResponse, PeakHourAnalysis
+from app.prediction.service import PredictionService
+from app.auth.dependencies import get_current_user
+from db.models import User
 
 router = APIRouter()
 

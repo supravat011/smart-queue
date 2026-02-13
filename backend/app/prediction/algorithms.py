@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from backend.db.models import Slot, Appointment, Prediction, LoadHistory, Service
+from db.models import Slot, Appointment, Prediction, LoadHistory, Service
 from datetime import datetime, timedelta
 from typing import List, Tuple
 

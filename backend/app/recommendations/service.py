@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
-from backend.db.models import Slot, Service, User
-from backend.app.recommendations.schemas import SlotRecommendation
-from backend.app.prediction.algorithms import PredictionAlgorithms
+from db.models import Slot, Service, User
+from app.recommendations.schemas import SlotRecommendation
+from app.prediction.algorithms import PredictionAlgorithms
 from datetime import date, time as dt_time, datetime, timedelta
 from typing import List, Tuple
 

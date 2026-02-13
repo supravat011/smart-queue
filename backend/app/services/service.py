@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from backend.db.models import Service
-from backend.app.services.schemas import ServiceCreate, ServiceUpdate
+from db.models import Service
+from app.services.schemas import ServiceCreate, ServiceUpdate
 
 class ServiceService:
     """Service for service management operations."""

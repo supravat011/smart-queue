@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from backend.db.models import User, Appointment, Slot, Service
-from backend.app.admin.schemas import SystemMetrics, SlotUtilization
+from db.models import User, Appointment, Slot, Service
+from app.admin.schemas import SystemMetrics, SlotUtilization
 from datetime import datetime, date
 
 class AdminService:
