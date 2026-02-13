@@ -13,3 +13,5 @@ services:
         value: false
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: FRONTEND_URL
+        value: https://smart-queue33.vercel.app
