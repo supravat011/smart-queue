@@ -4,22 +4,34 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 from core.config import settings
 
-# Create SQLite engine with WAL mode
-engine = create_engine(
-    settings.DATABASE_URL,
-    connect_args={
-        "check_same_thread": False,
-    },
-    poolclass=StaticPool,
-    echo=settings.DEBUG
-)
+# Determine if using PostgreSQL or SQLite
+is_postgres = settings.DATABASE_URL.startswith("postgresql")
 
-# Enable WAL mode and foreign keys
-with engine.connect() as conn:
-    conn.execute(text("PRAGMA journal_mode=WAL"))
-    conn.execute(text("PRAGMA synchronous=NORMAL"))
-    conn.execute(text("PRAGMA foreign_keys=ON"))
-    conn.commit()
+# Create engine with appropriate settings
+if is_postgres:
+    # PostgreSQL configuration
+    engine = create_engine(
+        settings.DATABASE_URL,
+        echo=settings.DEBUG,
+        pool_pre_ping=True  # Verify connections before using them
+    )
+else:
+    # SQLite configuration
+    engine = create_engine(
+        settings.DATABASE_URL,
+        connect_args={
+            "check_same_thread": False,
+        },
+        poolclass=StaticPool,
+        echo=settings.DEBUG
+    )
+    
+    # Enable WAL mode and foreign keys for SQLite only
+    with engine.connect() as conn:
+        conn.execute(text("PRAGMA journal_mode=WAL"))
+        conn.execute(text("PRAGMA synchronous=NORMAL"))
+        conn.execute(text("PRAGMA foreign_keys=ON"))
+        conn.commit()
 
 # Session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
