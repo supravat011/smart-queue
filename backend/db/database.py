@@ -1,37 +1,25 @@
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.pool import StaticPool
 from core.config import settings
 
-# Determine if using PostgreSQL or SQLite
+# Determine database type
+is_mysql = settings.DATABASE_URL.startswith("mysql")
 is_postgres = settings.DATABASE_URL.startswith("postgresql")
 
 # Create engine with appropriate settings
-if is_postgres:
-    # PostgreSQL configuration
+if is_mysql or is_postgres:
+    # MySQL or PostgreSQL configuration
     engine = create_engine(
         settings.DATABASE_URL,
         echo=settings.DEBUG,
-        pool_pre_ping=True  # Verify connections before using them
+        pool_pre_ping=True,  # Verify connections before using them
+        pool_size=10,
+        max_overflow=20,
+        pool_recycle=3600  # Recycle connections after 1 hour
     )
 else:
-    # SQLite configuration
-    engine = create_engine(
-        settings.DATABASE_URL,
-        connect_args={
-            "check_same_thread": False,
-        },
-        poolclass=StaticPool,
-        echo=settings.DEBUG
-    )
-    
-    # Enable WAL mode and foreign keys for SQLite only
-    with engine.connect() as conn:
-        conn.execute(text("PRAGMA journal_mode=WAL"))
-        conn.execute(text("PRAGMA synchronous=NORMAL"))
-        conn.execute(text("PRAGMA foreign_keys=ON"))
-        conn.commit()
+    raise ValueError(f"Unsupported database URL: {settings.DATABASE_URL}. Only MySQL and PostgreSQL are supported.")
 
 # Session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     
     # Database
-    DATABASE_URL: str = "sqlite:///./backend/db/smartqueue.db"
+    DATABASE_URL: str = "mysql+pymysql://root:password@localhost:3306/smartqueue"
     
     # Security
     SECRET_KEY: str = "your-secret-key-change-this-in-production"
