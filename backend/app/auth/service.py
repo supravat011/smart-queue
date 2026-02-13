@@ -4,6 +4,7 @@ from db.models import User
 from app.auth.schemas import UserCreate, UserLogin
 from core.security import get_password_hash, verify_password, create_access_token, create_refresh_token
 from datetime import timedelta
+from db.auto_seed import auto_seed_database
 
 class AuthService:
     """Service for authentication operations."""
@@ -39,6 +40,13 @@ class AuthService:
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
+        
+        # Auto-seed database with services and slots if this is the first user
+        try:
+            auto_seed_database(db)
+        except Exception as e:
+            print(f"Auto-seed warning: {e}")
+            # Don't fail registration if seeding fails
         
         return new_user
     
