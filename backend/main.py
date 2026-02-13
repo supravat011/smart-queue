@@ -1,17 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.core.config import settings
-from backend.db.database import engine, Base
-from backend.app.auth.router import router as auth_router
-from backend.app.users.router import router as users_router
-from backend.app.services.router import router as services_router
-from backend.app.slots.router import router as slots_router
-from backend.app.appointments.router import router as appointments_router
-from backend.app.prediction.router import router as prediction_router
-from backend.app.admin.router import router as admin_router
-from backend.app.recommendations.router import router as recommendations_router
-from backend.app.analytics.router import router as analytics_router
-from backend.app.websocket.router import router as websocket_router
+from core.config import settings
+from db.database import engine, Base
+from app.auth.router import router as auth_router
+from app.users.router import router as users_router
+from app.services.router import router as services_router
+from app.slots.router import router as slots_router
+from app.appointments.router import router as appointments_router
+from app.prediction.router import router as prediction_router
+from app.admin.router import router as admin_router
+from app.recommendations.router import router as recommendations_router
+from app.analytics.router import router as analytics_router
+from app.websocket.router import router as websocket_router
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
